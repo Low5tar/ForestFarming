@@ -108,7 +108,7 @@ public class BasicListeners implements Listener {
       String sortudoCost = Formatter.format(ForestFarming.getPlugin().getConfig().getDouble("sortudo-cost") * sortudo);
       String colheitorCost = Formatter.format(ForestFarming.getPlugin().getConfig().getDouble("colheitor-cost") * colheitor);
       Inventory inv = Bukkit.createInventory(null, 36, "Melhore sua enxada");
-      inv.setItem(4, (new ItemBuilder(Material.DIAMOND_HOE)).setName(").setLore(new String[] { "afazendeiro", "pensou em melhorar sua enxada ?", "", "Fertilizador " + fertilizador, "Sortudo " + sortudo, "Colheitor " + colheitor }).toItemStack());
+      inv.setItem(4, (new ItemBuilder(Material.DIAMOND_HOE)).setName(").setLore(new String[] { "§aOlá, fazendeiro!", "§fJá pensou em melhorar sua enxada ?", "", "Fertilizador " + fertilizador, "Sortudo " + sortudo, "Colheitor " + colheitor }).toItemStack());
       inv.setItem(20, (new ItemBuilder(Material.INK_SACK, 1, (byte)15)).setName("+ fertilizador + " > " + (fertilizador + 1)).setLore(new String[] { "este melhoramento da sua", "vocrecebermais dinheiro", "cada plantaquebrada.", "", " m+ maxFertilizador, "", " precisa de + fertilizadorCost + " dinheiro", " evoluir este encantamento!", "", "para Evoluir" }).toItemStack());
       inv.setItem(22, (new ItemBuilder(Material.NETHER_STAR)).setName("+ sortudo + " > " + (sortudo + 1)).setLore(new String[] { "este melhoramento da sua", "você te rmais chance", "conseguir itens raros.", "", " m+ maxSortudo, "", " precisa de + sortudoCost + " dinheiro", " evoluir este encantamento!", "", "para Evoluir" }).toItemStack());
       inv.setItem(24, (new ItemBuilder(Material.SHEARS)).setName("+ colheitor + " > " + (colheitor + 1)).setLore(new String[] { "este melhoramento da sua", "as plantas droparam", "itens.", "", " m+ maxColheitor, "", " precisa de + colheitorCost + " dinheiro", " evoluir este encantamento!", "", "para Evoluir" }).toItemStack());
@@ -130,7 +130,7 @@ public class BasicListeners implements Listener {
     switch (e.getSlot()) {
       case 20:
         if (fertilizador >= ForestFarming.getPlugin().getConfig().getDouble("max-fertilizador")) {
-          p.sendMessage(ChatColor.RED + "Você já chegou ao nmde Fertilizador.");
+          p.sendMessage(ChatColor.RED + "Você já chegou ao nível máximo de Fertilizador.");
           p.closeInventory();
           return;
         } 
@@ -144,18 +144,18 @@ public class BasicListeners implements Listener {
         lista.add(Integer.valueOf(fertilizador + 1));
         lista.add(Integer.valueOf(sortudo));
         lista.add(Integer.valueOf(colheitor));
-        PolarFarmPlugin.playerdata.replace(p.getName(), lista);
-        p.sendMessage("compra foi efetuada com sucesso.");
+        ForestFarming.playerdata.replace(p.getName(), lista);
+        p.sendMessage("§aCompra foi efetuada com sucesso.");
         runReload(p);
         return;
       case 22:
         if (sortudo >= ForestFarming.getPlugin().getConfig().getDouble("max-sortudo")) {
-          p.sendMessage(ChatColor.RED + "Você já chegou ao nmde Sortudo.");
+          p.sendMessage(ChatColor.RED + "Você já chegou ao nível máximo de Sortudo.");
           p.closeInventory();
           return;
         } 
         if (ForestFarming.getEconomy().getBalance((OfflinePlayer)p) < ForestFarming.getPlugin().getConfig().getDouble("sortudo-cost") * sortudo) {
-          p.sendMessage(ChatColor.RED + "Vocntem dinheiro suficiente para efetuar essa compra.");
+          p.sendMessage(ChatColor.RED + "VocÊ não tem dinheiro suficiente para efetuar essa compra.");
           p.closeInventory();
           return;
         } 
@@ -164,13 +164,13 @@ public class BasicListeners implements Listener {
         lista.add(Integer.valueOf(fertilizador));
         lista.add(Integer.valueOf(sortudo + 1));
         lista.add(Integer.valueOf(colheitor));
-        PolarFarmPlugin.playerdata.replace(p.getName(), lista);
-        p.sendMessage("compra foi efetuada com sucesso.");
+        ForestFarming.playerdata.replace(p.getName(), lista);
+        p.sendMessage("§aCompra foi efetuada com sucesso.");
         runReload(p);
         return;
       case 24:
         if (colheitor >= ForestFarming.getPlugin().getConfig().getDouble("max-colheitor")) {
-          p.sendMessage(ChatColor.RED + "Vocjchegou ao nmde Colheitor.");
+          p.sendMessage(ChatColor.RED + "Você já chegou ao nível máximo de Colheitor.");
           p.closeInventory();
           return;
         } 
@@ -185,7 +185,7 @@ public class BasicListeners implements Listener {
         lista.add(Integer.valueOf(sortudo));
         lista.add(Integer.valueOf(colheitor + 1));
         ForestFarming.playerdata.replace(p.getName(), lista);
-        p.sendMessage("compra foi efetuada com sucesso.");
+        p.sendMessage("§aCompra foi efetuada com sucesso.");
         runReload(p);
         return;
     } 
